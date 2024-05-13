@@ -15,7 +15,7 @@ def train(x_train, batch_size, epochs, learning_rate):
         )
     autoencoder.summary()
     autoencoder.compile(learning_rate=learning_rate)
-    autoencoder.train(x_train=x_train,batch_size=batch_size,epochs=epochs)
+    autoencoder.train(x_train=x_train,batch_size=batch_size,epochs=epochs,x_test=x_test)
     return autoencoder
 
 def load_mnist():
@@ -29,5 +29,5 @@ def load_mnist():
     return x_train, y_train, x_test, y_test
     
 if __name__=="__main__":
-    x_train, _ , _, _ = load_mnist()
-    autoencoder = train(x_train=x_train[:10000], batch_size=BATCH_SIZE, epochs=EPOCHS, learning_rate= LEARNING_RATE)
+    x_train, _ , x_test, _ = load_mnist()
+    autoencoder = train(x_train=x_train[:10000], x_test=x_test[:5000], batch_size=BATCH_SIZE, epochs=EPOCHS, learning_rate= LEARNING_RATE)
