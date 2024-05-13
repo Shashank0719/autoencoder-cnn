@@ -122,6 +122,11 @@ class Autoencoder():
         x = Flatten()(conv_layers)
         return Dense(self.latent_dim, name="encoder_dense_layer")(x)
     
+    def predict(self,input):
+        encoded_output = self.encoder.predict(input)
+        return self.decoder.predict(encoded_output)
+
+    
     def summary(self):
         self.encoder.summary()
         self.decoder.summary()
