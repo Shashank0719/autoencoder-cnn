@@ -137,9 +137,9 @@ class Autoencoder():
         mse = MeanSquaredError()
         self.model.compile(optimizer=optimizer, loss=mse)
 
-    def train(self, x_train, batch_size, epochs,):
+    def train(self, x_train, batch_size, epochs,x_test):
         self.model.fit(x_train, x_train,
-                       batch_size=batch_size, epochs=epochs, shuffle=True)
+                       batch_size=batch_size, epochs=epochs, shuffle=True, validation_data=(x_test,x_test))
 
 if __name__ == "__main__":
     autoencoder = Autoencoder(
